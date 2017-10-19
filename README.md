@@ -13,8 +13,8 @@ https://github.com/leetenki/YOLOv2
 ## YOLOv2のgrad-cam検討
 Grad-camによる可視化のための変更をかけています
 
-<img src="data/people.png">
-<img src="data/gcam.png">
+<img src="data/people.png" width="320" height="320">
+<img src="data/gcam.png"  width="320" height="320">
 
 grad-camの論文はこちら
 
