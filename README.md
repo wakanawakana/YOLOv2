@@ -17,13 +17,8 @@ grad-camの論文はこちら
 
 https://arxiv.org/abs/1610.02391
 
-論文のオリジナル実装（Lua）
+論文のオリジナル実装（Lua）：https://github.com/ramprs/grad-cam
 
-https://github.com/ramprs/grad-cam
+Keras：https://github.com/jacobgil/keras-grad-cam
 
-Keras
-https://github.com/jacobgil/keras-grad-cam
-
-Chainer
-
-https://github.com/tsurumeso/chainer-grad-cam
+Chainer：https://github.com/tsurumeso/chainer-grad-cam
