@@ -11,8 +11,19 @@ https://github.com/leetenki/YOLOv2
 - Chainer 1.16.0
 
 ## YOLOv2のgrad-cam検討
-こちのchainer版YOLOv2にGrad-camによる可視化のための変更をかけています
+Grad-camによる可視化のための変更をかけています
 
 grad-camの論文はこちら
 
 https://arxiv.org/abs/1610.02391
+
+論文のオリジナル実装（Lua）
+
+https://github.com/ramprs/grad-cam
+
+Keras
+https://github.com/jacobgil/keras-grad-cam
+
+Chainer
+
+https://github.com/tsurumeso/chainer-grad-cam
