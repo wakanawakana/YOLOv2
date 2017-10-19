@@ -1,5 +1,6 @@
 # YOLOv2
 https://github.com/leetenki/YOLOv2
+
 使用した元のchnainer版 YOLOv2
 
 ## 確認環境
@@ -13,4 +14,5 @@ https://github.com/leetenki/YOLOv2
 こちのchainer版YOLOv2にGrad-camによる可視化のための変更をかけています
 
 grad-camの論文はこちら
+
 https://arxiv.org/abs/1610.02391
