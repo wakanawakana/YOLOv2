@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import time
 import cv2
 import numpy as np
@@ -30,7 +33,8 @@ class CocoPredictor:
     def __call__(self, orig_img):
         orig_input_height, orig_input_width, _ = orig_img.shape
         #img = cv2.resize(orig_img, (640, 640))
-        img = reshape_to_yolo_size(orig_img)
+        #img = reshape_to_yolo_size(orig_img)
+        img = cv2.resize(orig_img, (352, 352))
         input_height, input_width, _ = img.shape
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         img = np.asarray(img, dtype=np.float32) / 255.0
@@ -44,6 +48,7 @@ class CocoPredictor:
 
         # parse results
         _, _, _, grid_h, grid_w = x.shape
+        print "grid x:",grid_h, "grid y:",grid_w
         x = F.reshape(x, (self.n_boxes, grid_h, grid_w)).data
         y = F.reshape(y, (self.n_boxes, grid_h, grid_w)).data
         w = F.reshape(w, (self.n_boxes, grid_h, grid_w)).data
@@ -92,10 +97,11 @@ if __name__ == "__main__":
             orig_img,
             result["box"].int_left_top(), result["box"].int_right_bottom(),
             (0, 255, 0),
-            5
+            2
         )
         text = '%s(%2d%%)' % (result["label"], result["probs"].max()*result["conf"]*100)
-        cv2.putText(orig_img, text, (left, top-6), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+        cv2.putText(orig_img, text, (left, top-6), cv2.FONT_HERSHEY_COMPLEX_SMALL, 0.5, (255, 255, 255), 1)
+        text = '%s(%2d%%) %2d %f %f %f %f' % (result["label"], result["probs"].max()*result["conf"]*100, result["class_id"], result["box"].x/orig_img.shape[1], result["box"].y/orig_img.shape[0], result["box"].w/orig_img.shape[1], result["box"].h/orig_img.shape[0])
         print(text)
 
     print("save results to yolov2_result.jpg")
