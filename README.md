@@ -25,46 +25,27 @@ Grad-camによる可視化のための変更をかけています
 <img src="data/people.png" width="280" height="280"><img src="data/yolov2_result.jpg"  width="280" height="280"><img src="data/gcam-18.png"  width="280" height="280"> 
 
 以降22層から全部ならべてみた
+
 <img src="data/gcam-22.png"  width="320" height="320">
-
 <img src="data/gcam-21.png"  width="320" height="320">
-
 <img src="data/gcam-20.png"  width="320" height="320">
-
 <img src="data/gcam-19.png"  width="320" height="320">
-
 <img src="data/gcam-18.png"  width="320" height="320">
-
 <img src="data/gcam-17.png"  width="320" height="320">
-
 <img src="data/gcam-16.png"  width="320" height="320">
-
 <img src="data/gcam-14.png"  width="320" height="320">
-
 <img src="data/gcam-13.png"  width="320" height="320">
-
 <img src="data/gcam-12.png"  width="320" height="320">
-
 <img src="data/gcam-11.png"  width="320" height="320">
-
 <img src="data/gcam-10.png"  width="320" height="320">
-
 <img src="data/gcam-9.png"  width="320" height="320">
-
 <img src="data/gcam-8.png"  width="320" height="320">
-
 <img src="data/gcam-7.png"  width="320" height="320">
-
 <img src="data/gcam-6.png"  width="320" height="320">
-
 <img src="data/gcam-5.png"  width="320" height="320">
-
 <img src="data/gcam-4.png"  width="320" height="320">
-
 <img src="data/gcam-3.png"  width="320" height="320">
-
 <img src="data/gcam-2.png"  width="320" height="320">
-
 <img src="data/gcam-1.png"  width="320" height="320">
 
 grad-camの論文はこちら
