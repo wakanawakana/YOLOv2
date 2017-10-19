@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import chainer.functions as F
 import numpy as np
 import cv2
@@ -117,7 +120,7 @@ def multi_box_intersection(a, b):
     w = multi_overlap(a.x, a.w, b.x, b.w)
     h = multi_overlap(a.y, a.h, b.y, b.h)
     zeros = Variable(np.zeros(w.shape, dtype=w.data.dtype))
-    zeros.to_gpu()
+    #zeros.to_gpu()
 
     w = F.maximum(w, zeros)
     h = F.maximum(h, zeros)
@@ -196,8 +199,8 @@ def reshape_to_yolo_size(img):
         input_height *= min_pixel / min_edge
     max_edge = np.maximum(input_width, input_height)
     if max_edge > max_pixel:
-        input_width *= max_pixel / max_edge
-        input_height *= max_pixel / max_edge
+        input_width *= float(max_pixel) / float(max_edge)
+        input_height *= float(max_pixel) / float(max_edge)
 
     input_width = int(input_width / 32 + round(input_width % 32 / 32)) * 32
     input_height = int(input_height / 32 + round(input_height % 32 / 32)) * 32
