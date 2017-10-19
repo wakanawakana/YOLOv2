@@ -102,8 +102,8 @@ for batch in range(max_batches):
     #x.to_gpu()
 
     # forward
-    #yolov2.zerograds()
-    loss = model.gcam(x, t, target=18)
+    gcam_layer = 18
+    loss = model.gcam(x, t, target=gcam_layer)
     print("batch: %d learning rate: %f loss: %f" % (batch, optimizer.lr, loss.data))
 
     # backward and optimize
@@ -130,6 +130,6 @@ for batch in range(max_batches):
             (0, 128, 255),
             1
         )
-    cv2.imwrite('gcam.png', gcam)
+    cv2.imwrite('gcam-{}.png'.format(gcam_layer), gcam)
 
 
