@@ -22,7 +22,7 @@ Grad-camによる可視化のための変更をかけています
 
 添付写真は18層の反応を女の人から作ったもの
 
-<img src="data/people.png" width="320" height="320"> <img src="data/yolov2_result.jpg"  width="320" height="320"> <img src="data/gcam.png"  width="320" height="320"> 
+<img src="data/people.png" width="300" height="300"> <img src="data/yolov2_result.jpg"  width="300" height="300"> <img src="data/gcam.png"  width="300" height="300"> 
 
 grad-camの論文はこちら
 
