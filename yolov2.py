@@ -186,13 +186,12 @@ class YOLOv2Predictor(Chain):
         if self.seen < self.unstable_seen: # centerの存在しないbbox誤差学習スケールは基本0.1
             box_learning_scale = np.tile(0.1, x.shape).astype(np.float32)
         else:
-            box_learning_scale = np.tile(0, x.shape).astype(np.float32)
+            box_learning_scale = np.tile(0.0, x.shape).astype(np.float32)
 
         tconf = np.zeros(conf.shape, dtype=np.float32) # confidenceのtruthは基本0、iouがthresh以上のものは学習しない、ただしobjectの存在するgridのbest_boxのみ真のIOUに近づかせる
         conf_learning_scale = np.tile(0.1, conf.shape).astype(np.float32)
 
         tprob = prob.data.copy() # best_anchor以外は学習させない(自身との二乗和誤差 = 0)
-        #tprob = np.zeros(prob.data.shape, dtype=np.float32)        
         
         # 全bboxとtruthのiouを計算(batch単位で計算する)
         x_shift = Variable(np.broadcast_to(np.arange(grid_w, dtype=np.float32), x.shape[1:]))
@@ -328,13 +327,13 @@ class YOLOv2Predictor(Chain):
         if self.seen < self.unstable_seen: # centerの存在しないbbox誤差学習スケールは基本0.1
             box_learning_scale = np.tile(0.1, x.shape).astype(np.float32)
         else:
-            box_learning_scale = np.tile(0, x.shape).astype(np.float32)
+            box_learning_scale = np.tile(0.0, x.shape).astype(np.float32)
 
         tconf = np.zeros(conf.shape, dtype=np.float32) # confidenceのtruthは基本0、iouがthresh以上のものは学習しない、ただしobjectの存在するgridのbest_boxのみ真のIOUに近づかせる
         conf_learning_scale = np.tile(0.1, conf.shape).astype(np.float32)
 
-        tprob = prob.data.copy() # best_anchor以外は学習させない(自身との二乗和誤差 = 0)
-        #tprob = np.zeros(prob.data.shape, dtype=np.float32)        
+        #tprob = prob.data.copy() # best_anchor以外は学習させない(自身との二乗和誤差 = 0)
+        tprob = np.zeros(prob.data.shape, dtype=np.float32)        
         
         # 全bboxとtruthのiouを計算(batch単位で計算する)
         x_shift = Variable(np.broadcast_to(np.arange(grid_w, dtype=np.float32), x.shape[1:]))
@@ -369,8 +368,8 @@ class YOLOv2Predictor(Chain):
 
         # 一定以上のiouを持つanchorに対しては、confを0に下げないようにする(truthの周りのgridはconfをそのまま維持)。
         #tconf[best_ious > self.thresh] = conf.data.get()[best_ious > self.thresh]
-        #tconf[best_ious > self.thresh] = conf.data[best_ious > self.thresh]
-        tconf = conf.data.copy()
+        tconf[best_ious > self.thresh] = conf.data[best_ious > self.thresh]
+        #tconf = conf.data.copy()
         conf_learning_scale[best_ious > self.thresh] = 0
 
         # objectの存在するanchor boxのみ、x、y、w、h、conf、probを個別修正
