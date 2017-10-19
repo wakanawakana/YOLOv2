@@ -21,6 +21,7 @@ Grad-camによる可視化のための変更をかけています
 - おそらく画面関係が対応しない19層以降
 
 添付写真は18層の反応を女の人から作ったもの
+
 <img src="data/people.png" width="320" height="320"><img src="data/gcam.png"  width="320" height="320">
 
 grad-camの論文はこちら
