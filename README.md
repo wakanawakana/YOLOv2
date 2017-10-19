@@ -13,6 +13,15 @@ https://github.com/leetenki/YOLOv2
 ## YOLOv2のgrad-cam検討
 Grad-camによる可視化のための変更をかけています
 
+これで動いてるのでしょうか？？
+
+問題点
+- クラス分類でないこと
+- BBOXのバックプロパゲーションをどうするのか
+- フルコネクトで画面関係が同じになるような畳み込みだけでなく、位置関係として対応しない19層以降
+
+<img src="data/people.png" width="320" height="320"><img src="data/gcam.png"  width="320" height="320">
+
 grad-camの論文はこちら
 
 https://arxiv.org/abs/1610.02391
