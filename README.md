@@ -5,7 +5,7 @@ https://github.com/leetenki/YOLOv2
 
 ## 確認環境
 - windows 7 64bit
-- Anaconda 2.4.1
+- Anaconda 4.0.0
 - Python 2.7
 - OpenCV 2.X
 - Chainer 1.16.0
