@@ -34,6 +34,7 @@ Grad-camによる可視化のための変更をかけています
 <img src="data/gcam-18.png"  width="320" height="320">
 <img src="data/gcam-17.png"  width="320" height="320">
 <img src="data/gcam-16.png"  width="320" height="320">
+<img src="data/gcam-15.png"  width="320" height="320">
 <img src="data/gcam-14.png"  width="320" height="320">
 <img src="data/gcam-13.png"  width="320" height="320">
 <img src="data/gcam-12.png"  width="320" height="320">
