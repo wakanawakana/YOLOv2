@@ -10,7 +10,19 @@ https://github.com/leetenki/YOLOv2
 - OpenCV 2.X
 - Chainer 1.16.0
 
+
+## grad-cam
+
+https://arxiv.org/abs/1610.02391
+
+論文のオリジナル実装（Lua）：https://github.com/ramprs/grad-cam
+
+Keras：https://github.com/jacobgil/keras-grad-cam
+
+Chainer：https://github.com/tsurumeso/chainer-grad-cam
+
 ## YOLOv2のgrad-cam検討
+
 Grad-camによる可視化のための変更をかけています
 
 これで動いてるのでしょうか？？
@@ -50,12 +62,3 @@ Grad-camによる可視化のための変更をかけています
 <img src="data/gcam-2.png"  width="320" height="320">
 <img src="data/gcam-1.png"  width="320" height="320">
 
-grad-camの論文はこちら
-
-https://arxiv.org/abs/1610.02391
-
-論文のオリジナル実装（Lua）：https://github.com/ramprs/grad-cam
-
-Keras：https://github.com/jacobgil/keras-grad-cam
-
-Chainer：https://github.com/tsurumeso/chainer-grad-cam
