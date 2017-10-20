@@ -330,10 +330,11 @@ class YOLOv2Predictor(Chain):
             box_learning_scale = np.tile(0.0, x.shape).astype(np.float32)
 
         tconf = np.zeros(conf.shape, dtype=np.float32) # confidenceのtruthは基本0、iouがthresh以上のものは学習しない、ただしobjectの存在するgridのbest_boxのみ真のIOUに近づかせる
-        conf_learning_scale = np.tile(0.1, conf.shape).astype(np.float32)
+        conf_learning_scale = np.tile(1.0, conf.shape).astype(np.float32)
 
-        #tprob = prob.data.copy() # best_anchor以外は学習させない(自身との二乗和誤差 = 0)
-        tprob = np.zeros(prob.data.shape, dtype=np.float32)        
+        tprob = prob.data.copy() # best_anchor以外は学習させない(自身との二乗和誤差 = 0)
+        #tprob = np.zeros(prob.data.shape, dtype=np.float32)  
+        #tprob = np.ones(prob.data.shape, dtype=np.float32) 
         
         # 全bboxとtruthのiouを計算(batch単位で計算する)
         x_shift = Variable(np.broadcast_to(np.arange(grid_w, dtype=np.float32), x.shape[1:]))
@@ -369,8 +370,7 @@ class YOLOv2Predictor(Chain):
         # 一定以上のiouを持つanchorに対しては、confを0に下げないようにする(truthの周りのgridはconfをそのまま維持)。
         #tconf[best_ious > self.thresh] = conf.data.get()[best_ious > self.thresh]
         tconf[best_ious > self.thresh] = conf.data[best_ious > self.thresh]
-        #tconf = conf.data.copy()
-        conf_learning_scale[best_ious > self.thresh] = 0
+        conf_learning_scale[best_ious > self.thresh] = 15.0
 
         # objectの存在するanchor boxのみ、x、y、w、h、conf、probを個別修正
         abs_anchors = self.anchors / np.array([grid_w, grid_h])
@@ -394,8 +394,8 @@ class YOLOv2Predictor(Chain):
                 ty[batch, truth_n, :, truth_h, truth_w] = float(truth_box["y"]) * grid_h - truth_h
                 tw[batch, truth_n, :, truth_h, truth_w] = np.log(float(truth_box["w"]) / abs_anchors[truth_n][0])
                 th[batch, truth_n, :, truth_h, truth_w] = np.log(float(truth_box["h"]) / abs_anchors[truth_n][1])
-                tprob[batch, :, truth_n, truth_h, truth_w] = 0
-                tprob[batch, int(truth_box["label"]), truth_n, truth_h, truth_w] = 1
+                tprob[batch, :, truth_n, truth_h, truth_w] = 1
+                tprob[batch, int(truth_box["label"]), truth_n, truth_h, truth_w] = 0
 
                 # IOUの観測
                 full_truth_box = Box(float(truth_box["x"]), float(truth_box["y"]), float(truth_box["w"]), float(truth_box["h"]))
@@ -412,9 +412,8 @@ class YOLOv2Predictor(Chain):
                     np.exp(h[batch][truth_n][0][truth_h][truth_w].data) * abs_anchors[truth_n][1]
                 )
                 predicted_iou = box_iou(full_truth_box, predicted_box)
-                #tconf[batch, truth_n, :, truth_h, truth_w] = predicted_iou
-                tconf[batch, truth_n, :, truth_h, truth_w] = 1
-                conf_learning_scale[batch, truth_n, :, truth_h, truth_w] = 10.0
+                tconf[batch, truth_n, :, truth_h, truth_w] = predicted_iou
+                #conf_learning_scale[batch, truth_n, :, truth_h, truth_w] = 10.0
 
             # debug prints
             maps = F.transpose(prob[batch], (2, 3, 1, 0)).data

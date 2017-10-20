@@ -47,8 +47,8 @@ def generate_data(path):
 train_sizes = [320, 352, 384, 416, 448]
 item_path = "./items"
 background_path = "./backgrounds"
-initial_weight_file = "./yolov2_darknet.model"
-weight_file = "./yolov2_darknet.model"
+initial_weight_file = "./yolov2_darknet_coco.model"
+weight_file = "./yolov2_darknet_coco.model"
 backup_path = "backup"
 backup_file = "%s/backup.model" % (backup_path)
 batch_size = 16
@@ -91,7 +91,7 @@ optimizer.setup(model)
 #optimizer.add_hook(chainer.optimizer.WeightDecay(weight_decay))
 
 # start to train
-print("start training")
+print("start grad-cam")
 for batch in range(max_batches):
     if str(batch) in learning_schedules:
         optimizer.lr = learning_schedules[str(batch)]
@@ -102,7 +102,7 @@ for batch in range(max_batches):
     #x.to_gpu()
 
     # forward
-    gcam_layer = 18
+    gcam_layer = 22
     loss = model.gcam(x, t, target=gcam_layer)
     print("batch: %d learning rate: %f loss: %f" % (batch, optimizer.lr, loss.data))
 
