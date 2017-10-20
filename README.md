@@ -39,8 +39,8 @@ Grad-camによる可視化のための変更をかけています
 
 以降22層から全部ならべてみた
 
-<img src="data/gcam-22.png"  width="320" height="320">
-<img src="data/gcam-21.png"  width="320" height="320">
+<img src="data/gcam-22.png"  width="320" height="320"><img src="data/416x416.png"  width="320" height="320">
+<img src="data/gcam-21.png"  width="320" height="320"><img src="data/416x416.png"  width="320" height="320">
 <img src="data/gcam-20.png"  width="320" height="320">
 <img src="data/gcam-19.png"  width="320" height="320">
 <img src="data/gcam-18.png"  width="320" height="320">
